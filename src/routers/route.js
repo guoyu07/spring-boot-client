@@ -5,7 +5,7 @@ Vue.use(Router);
 let popCount = 0
 
 // 登录页
-const login = resolve => require(['components/business-modules/login/index.vue'], resolve)
+const login = resolve => require(['components/pages/login/index.vue'], resolve)
 
 // 业务页
 const index = r => require.ensure([], () => r(require('components/pages/index.vue')), 'group-index-main')
