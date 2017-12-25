@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import * as actions from './actions'
 import * as getters from './getters'
 import mutations from './mutations'
+import user from './modules/user'
 
 Vue.use(Vuex)
 
@@ -21,6 +22,8 @@ const store = new Vuex.Store({
   getters,
   strict: process.env.NODE_ENV !== 'production'
 })
+
+store.registerModule('user', user)
 
 //统一错误处理
 let errorObj = {name: '', number: 0}
