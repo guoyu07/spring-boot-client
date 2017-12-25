@@ -11,8 +11,8 @@
 </template>
 
 <script>
-  import topHeader from '../public-modules/top-header';
-  import sideBar from '../public-modules/side-bar';
+  import topHeader from '../global-component/top-header';
+  import sideBar from '../global-component/side-bar';
 
   export default {
     name: 'Main',

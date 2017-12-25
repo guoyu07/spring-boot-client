@@ -49,7 +49,6 @@
   export default {
     data() {
       return {
-        url: './static/vuetable.json',
         tableData: [],
         cur_page: 1,
         multipleSelection: [],
@@ -68,49 +67,14 @@
         this.getData();
       },
       getData() {
-        let self = this;
-        self.$axios.get("http://localhost:8011/profile_v1/user/query/all", {
-          params: {
-            page: self.cur_page,
-            pageSize: 2
+        this.$store.dispatch('queryUserList', data).then((res) => {
+          if (res.success) {
+            this.fromUrlList = res.fromUrlList
+            this.serverData = deepClone(res.data)
+            this.headOptions = optionTimeTypeCheck(deepClone(res.tableHeader) || this.headOptions)
           }
-        }).then((res) => {
-          console.log(res.data.data);
-          if (res.data && res.data.data && res.data.data.userList) {
-            this.tableData = res.data.data.userList.list;
-            console.log(this.tableData)
-          }
-        })
+        });
       },
-      search() {
-        this.is_search = true;
-      },
-      formatter(row, column) {
-        return row.address;
-      },
-      filterTag(value, row) {
-        return row.tag === value;
-      },
-      handleEdit(index, row) {
-        this.$message('编辑第' + (index + 1) + '行');
-      },
-      handleDelete(index, row) {
-        this.$message.error('删除第' + (index + 1) + '行');
-      },
-      delAll() {
-        const self = this,
-          length = self.multipleSelection.length;
-        let str = '';
-        self.del_list = self.del_list.concat(self.multipleSelection);
-        for (let i = 0; i < length; i++) {
-          str += self.multipleSelection[i].name + ' ';
-        }
-        self.$message.error('删除了' + str);
-        self.multipleSelection = [];
-      },
-      handleSelectionChange(val) {
-        this.multipleSelection = val;
-      }
     }
   }
 </script>

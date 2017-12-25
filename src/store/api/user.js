@@ -1,4 +1,4 @@
-import send from './http'
+import request from './http'
 export default {
 
 }
