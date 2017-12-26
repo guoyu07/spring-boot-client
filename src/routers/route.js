@@ -21,7 +21,8 @@ const routers = [
   {
     path: '/login',
     name: 'login',
-    component: login
+    component: login,
+    meta: {title: '登录-CMS系统'}
   },
   {
     path: '/index',
@@ -34,12 +35,14 @@ const routers = [
       {
         path: 'workbench',
         name: 'workbench',
-        component: workbench
+        component: workbench,
+        meta: {title: '主页-CMS系统'}
       },
       {
         path: 'user',
         name: 'user',
-        component: user
+        component: user,
+        meta: {title: '用户管理-CMS系统'}
       }
     ]
   }

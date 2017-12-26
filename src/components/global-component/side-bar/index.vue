@@ -11,7 +11,7 @@
         </template>
         <template v-else>
           <el-menu-item :index="item.index">
-            <i :class="item.icon"></i>{{ item.title }}
+            <i :class="item.icon"></i> {{ item.title }}
           </el-menu-item>
         </template>
       </template>
@@ -25,12 +25,12 @@
       return {
         items: [
           {
-            icon: 'el-icon-star-on',
+            icon: 'iconfont icon-home1',
             index: 'workbench',
-            title: '首页'
+            title: '主页'
           },
           {
-            icon: 'el-icon-menu',
+            icon: 'iconfont icon-personal',
             index: 'user',
             title: '用户管理'
           }

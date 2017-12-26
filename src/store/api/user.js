@@ -1,4 +1,4 @@
-import axios from 'axios';
+import http from '../../utils/http'
 
 export default {
   /**
@@ -7,6 +7,6 @@ export default {
    * @returns {*}
    */
   queryUserList(data) {
-    return axios.get("http://127.0.0.1:8011/profile_v1/user/query/all", {params: data});
+    return http.get("/profile_v1/user/query/all", data);
   }
 }
