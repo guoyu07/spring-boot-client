@@ -17,10 +17,16 @@
 
       <el-table-column type="selection" width="55"></el-table-column>
 
-      <el-table-column prop="name" label="姓名">
+      <el-table-column prop="realname" label="登录名">
       </el-table-column>
 
-      <el-table-column prop="createTime" label="创建时间" sortable>
+      <el-table-column prop="username" label="用户名">
+      </el-table-column>
+
+      <el-table-column prop="created" label="创建时间" sortable>
+      </el-table-column>
+
+      <el-table-column prop="modified" label="更新时间" sortable>
       </el-table-column>
 
       <el-table-column label="操作" width="180">
@@ -89,7 +95,7 @@
         this.getData();
       },
       getData() {
-        this.$store.dispatch('queryUserList', {page: this.cur_page, pageSize: 2})
+        this.$store.dispatch('queryUserList', {page: this.cur_page, pageSize: 5})
           .then(response => {
             console.log(response);
             if (response.data.success) {

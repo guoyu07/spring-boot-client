@@ -21,3 +21,9 @@
     }
   }
 </script>
+
+<style scoped>
+  .wrapper .content {
+    background-color: #F4F5F6;
+  }
+</style>

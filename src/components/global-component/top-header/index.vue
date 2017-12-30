@@ -1,16 +1,19 @@
 <template>
     <div class="header">
-        <div class="logo">后台管理系统</div>
+        <div class="top-line"></div>
+        <div class="logo">
+          <img class="logo-home" src="../../../../static/img/logo-home.png"/>
+        </div>
         <div class="user-info">
-            <el-dropdown trigger="click" @command="handleCommand">
+          <img class="user-logo" src="../../../../static/img/img.jpg">
+            <!--<el-dropdown trigger="click" @command="handleCommand">
                 <span class="el-dropdown-link">
                     <img class="user-logo" src="../../../../static/img/img.jpg">
-                    {{username}}
                 </span>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="loginout">退出</el-dropdown-item>
                 </el-dropdown-menu>
-            </el-dropdown>
+            </el-dropdown>-->
         </div>
     </div>
 </template>
@@ -44,19 +47,28 @@
         width: 100%;
         height: 70px;
         font-size: 22px;
-        line-height: 70px;
+        line-height: 67px;
+        background-color: #fff;
         color: #fff;
+        box-shadow:0px 0px 10px #A2A2A2;
     }
     .header .logo{
         float: left;
-        width:250px;
+        width:150px;
+        height: 67px;
         text-align: center;
+    }
+    .top-line{
+        height: 3px;
+        background-color: #409EFF;
     }
     .user-info {
         float: right;
-        padding-right: 50px;
-        font-size: 16px;
+        width:150px;
+        line-height: 67px;
         color: #fff;
+        text-align: center;
+        vertical-align: middle;
     }
     .user-info .el-dropdown-link{
         position: relative;
@@ -67,14 +79,17 @@
         vertical-align: middle;
     }
     .user-info .user-logo{
-        position: absolute;
-        left:0;
-        top:15px;
-        width:40px;
-        height:40px;
+        text-align: center;
+        vertical-align: middle;
+        width:37px;
+        height:37px;
         border-radius: 50%;
     }
     .el-dropdown-menu__item{
         text-align: center;
+    }
+    .logo-home{
+      width: 25%;
+      vertical-align:middle;
     }
 </style>
