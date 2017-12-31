@@ -23,7 +23,12 @@
 </script>
 
 <style scoped>
-  .wrapper .content {
+  .wrapper{
     background-color: #F4F5F6;
+  }
+  .wrapper .content {
+    background-color: #fff;
+    margin: 20px 10px 0px 10px;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.12);
   }
 </style>

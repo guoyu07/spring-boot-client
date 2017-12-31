@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <el-menu :default-active="onRoutes" class="el-menu-vertical-demo" theme="dark" unique-opened router>
+    <el-menu :default-active="onRoutes" unique-opened router>
       <template v-for="item in items">
         <template v-if="item.subs">
           <el-submenu :index="item.index">
@@ -11,7 +11,7 @@
         </template>
         <template v-else>
           <el-menu-item :index="item.index">
-            <i :class="item.icon"></i> {{ item.title }}
+            <template><i :class="item.icon"></i> {{ item.title }}</template>
           </el-menu-item>
         </template>
       </template>
@@ -25,12 +25,12 @@
       return {
         items: [
           {
-            icon: 'iconfont icon-home1',
+            icon: 'el-icon-menu',
             index: 'workbench',
             title: '主页'
           },
           {
-            icon: 'iconfont icon-personal',
+            icon: 'el-icon-message',
             index: 'user',
             title: '用户管理'
           }
@@ -49,14 +49,23 @@
   .sidebar {
     display: block;
     position: absolute;
-    width: 150px;
+    margin: 20px 10px 0px 10px;
+    width: 140px;
     left: 0;
     top: 70px;
     bottom: 0;
     background: #2E363F;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.12);
   }
 
   .sidebar > ul {
     height: 100%;
+  }
+  .el-menu{
+    background-color: #FFF;
+  }
+  .el-menu-item:hover {
+    background-color: #409EFF;
+    color: #fff;
   }
 </style>

@@ -50,7 +50,7 @@
         line-height: 67px;
         background-color: #fff;
         color: #fff;
-        box-shadow:0px 0px 10px #A2A2A2;
+        box-shadow: 0 1px 4px 0 rgba(0,0,0,.12);
     }
     .header .logo{
         float: left;
