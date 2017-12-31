@@ -55,11 +55,6 @@
 </script>
 
 <style scoped>
-  .el-tabs__header {
-    padding: 0;
-    position: relative;
-  }
-
   .workbench {
     height: 100%;
     background-color: #F4F5F6;
@@ -85,6 +80,7 @@
     text-align: center;
     line-height: 130px;
     min-height: 130px;
+    font-size: 18px;
     background-color: #fff;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .12);
   }

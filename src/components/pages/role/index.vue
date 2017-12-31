@@ -43,7 +43,7 @@
             <el-pagination
               @current-change="handleCurrentChange"
               layout="prev, pager, next"
-              :total="1000">
+              :total="totalCount">
             </el-pagination>
           </div>
         </div>
@@ -65,7 +65,8 @@
         select_cate: '',
         select_word: '',
         del_list: [],
-        is_search: false
+        is_search: false,
+        totalCount:0,
       }
     },
     created() {
@@ -105,6 +106,7 @@
             if (response.data.success) {
               console.log(response.data.data.userList.list);
               this.tableData = response.data.data.userList.list;
+              this.totalCount = response.data.data.userList.totalCount;
             }
           });
       },
