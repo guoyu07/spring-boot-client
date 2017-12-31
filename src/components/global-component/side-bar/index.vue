@@ -33,6 +33,11 @@
             icon: 'el-icon-message',
             index: 'user',
             title: '用户管理'
+          },
+          {
+            icon: 'el-icon-message',
+            index: 'role',
+            title: '角色管理'
           }
         ]
       }

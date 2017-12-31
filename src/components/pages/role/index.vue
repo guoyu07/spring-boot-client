@@ -1,7 +1,7 @@
 <template>
   <div class="user-list">
     <el-tabs v-model="activeName">
-      <el-tab-pane label="用户列表" name="first">
+      <el-tab-pane label="角色列表" name="first">
         <div class="user-table-options">
           <el-input @keyup.enter.native="" style="width: 200px;" class="filter-item"
                     placeholder="请输入用户名">
@@ -56,7 +56,7 @@
   export default {
     data() {
       return {
-        inputDate:'',
+        inputDate: '',
         inputName: '',
         activeName: 'first',
         tableData: [],
@@ -142,7 +142,8 @@
   .handler-table {
     margin: 10px;
   }
-  .user-table-options{
+
+  .user-table-options {
     margin: 0px 10px 0px 10px;
   }
 </style>

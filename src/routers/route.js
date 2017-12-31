@@ -11,6 +11,7 @@ const login = resolve => require(['components/pages/login/index.vue'], resolve)
 const index = r => require.ensure([], () => r(require('components/pages/index.vue')), 'group-index-main')
 const workbench = r => require.ensure([], () => r(require('components/pages/workbenches/index.vue')), 'group-index')
 const user = r => require.ensure([], () => r(require('components/pages/user/index.vue')), 'group-index')
+const role = r => require.ensure([], () => r(require('components/pages/role/index.vue')), 'group-index')
 
 
 const routers = [
@@ -43,6 +44,12 @@ const routers = [
         name: 'user',
         component: user,
         meta: {title: '用户管理-后台系统'}
+      },
+      {
+        path: 'role',
+        name: 'role',
+        component: role,
+        meta: {title: '角色管理-后台系统'}
       }
     ]
   }
