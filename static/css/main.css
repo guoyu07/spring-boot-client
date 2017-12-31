@@ -12,13 +12,11 @@ a{text-decoration: none}
     background: none repeat scroll 0 0 #fff;
     position: absolute;
     left: 150px;
-    right: 0;
+    right: 10px;
     top: 70px;
     bottom:0;
     width: auto;
-    padding:40px;
     box-sizing: border-box;
-    overflow-y: scroll;
 }
 .crumbs{
     margin-bottom: 20px;

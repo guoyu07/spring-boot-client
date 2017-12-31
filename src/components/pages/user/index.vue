@@ -1,11 +1,6 @@
 <template>
   <div class="table">
-    <div class="crumbs">
-      <el-breadcrumb separator="/">
-        <el-breadcrumb-item><i class="el-icon-menu"></i> 用户管理</el-breadcrumb-item>
-        <el-breadcrumb-item>用户列表</el-breadcrumb-item>
-      </el-breadcrumb>
-    </div>
+
     <div class="handle-box">
       <el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
       <el-input v-model="select_word" placeholder="用户名" class="handle-input mr10"></el-input>
