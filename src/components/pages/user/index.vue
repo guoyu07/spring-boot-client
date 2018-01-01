@@ -7,7 +7,8 @@
                     placeholder="请输入用户名">
           </el-input>
           <el-button type="primary"><i class="el-icon-search"></i> 搜索</el-button>
-          <el-button class="filter-item" style="margin-left: 10px;" @click="" type="primary"><i class="el-icon-edit"></i> 添加
+          <el-button class="filter-item" style="margin-left: 10px;" @click="" type="primary"><i
+            class="el-icon-edit"></i> 添加
           </el-button>
         </div>
         <div class="handler-table">
@@ -34,7 +35,7 @@
                            @click="handleEdit(scope.$index, scope.row)">编辑
                 </el-button>
                 <el-button size="small" type="danger"
-                           @click="handleDelete(scope.$index, scope.row)">删除
+                           @click="handleDelete(scope.row)">删除
                 </el-button>
               </template>
             </el-table-column>
@@ -43,7 +44,7 @@
             <el-pagination
               @current-change="handleCurrentChange"
               layout="prev, pager, next"
-              :total="totalCount">
+              :page-count="pageCount">
             </el-pagination>
           </div>
         </div>
@@ -56,7 +57,7 @@
   export default {
     data() {
       return {
-        inputDate:'',
+        inputDate: '',
         inputName: '',
         activeName: 'first',
         tableData: [],
@@ -66,7 +67,7 @@
         select_word: '',
         del_list: [],
         is_search: false,
-        totalCount:0
+        pageCount: 0
       }
     },
     created() {
@@ -101,13 +102,9 @@
       },
       getData() {
         this.$store.dispatch('queryUserList', {page: this.cur_page, pageSize: 5})
-          .then(response => {
-            console.log(response);
-            if (response.data.success) {
-              console.log(response.data.data.userList.list);
-              this.tableData = response.data.data.userList.list;
-              this.totalCount = response.data.data.userList.totalCount;
-            }
+          .then(data => {
+            this.tableData = data.userList.list;
+            this.pageCount = data.userList.totalPage;
           });
       },
       formatter(row, column) {
@@ -119,8 +116,19 @@
       handleEdit(index, row) {
         this.$message('编辑第' + (index + 1) + '行');
       },
-      handleDelete(index, row) {
-        this.$message.error('删除第' + (index + 1) + '行');
+      handleDelete(row) {
+        this.$confirm('确定删除该条记录?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          debugger
+          this.$store.dispatch('deleteUser', row).then(() => {
+            this.getData();
+          })
+        }).catch(()=>{
+
+        })
       },
       delAll() {
         const self = this,
@@ -144,7 +152,8 @@
   .handler-table {
     margin: 10px;
   }
-  .user-table-options{
+
+  .user-table-options {
     margin: 0px 10px 0px 10px;
   }
 </style>

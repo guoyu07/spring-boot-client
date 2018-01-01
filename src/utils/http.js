@@ -26,7 +26,7 @@ function checkStatus(response) {
   // loading
   // 如果http状态码正常，则直接返回数据
   if (response && (response.status === 200 || response.status === 304 || response.status === 400)) {
-    return response
+    return response;
     // 如果不需要除了data之外的数据，可以直接 return response.data
   }
   // 异常状态下，把错误信息返回去
@@ -36,7 +36,7 @@ function checkStatus(response) {
   }
 }
 
-function checkCode(res) {
+function checkCode(res,successMsg) {
   // 如果code异常(这里已经包括网络错误，服务器错误，后端抛出的错误)，可以弹出一个错误提示，告诉用户
   if (res.status === -404) {
     Message({
@@ -52,11 +52,18 @@ function checkCode(res) {
       duration: 5 * 1000
     })
   }
-  return res
+  if (successMsg) {
+    Message({
+      message: successMsg,
+      type: 'success',
+      duration: 2 * 1000
+    })
+  }
+  return res.data.data;
 }
 
 export default {
-  post(url, data) {
+  post(url, data, successMsg) {
     return service({
       method: 'post',
       url,
@@ -72,11 +79,11 @@ export default {
       }
     ).then(
       (res) => {
-        return checkCode(res)
+        return checkCode(res, successMsg)
       }
     )
   },
-  get(url, params) {
+  get(url, params, successMsg) {
     return service({
       method: 'get',
       url,
@@ -90,7 +97,7 @@ export default {
       }
     ).then(
       (res) => {
-        return checkCode(res)
+        return checkCode(res, successMsg)
       }
     )
   }

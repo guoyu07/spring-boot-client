@@ -101,13 +101,9 @@
       },
       getData() {
         this.$store.dispatch('queryUserList', {page: this.cur_page, pageSize: 5})
-          .then(response => {
-            console.log(response);
-            if (response.data.success) {
-              console.log(response.data.data.userList.list);
-              this.tableData = response.data.data.userList.list;
-              this.totalCount = response.data.data.userList.totalCount;
-            }
+          .then(data => {
+            this.tableData = data.userList.list;
+            this.totalCount = data.userList.totalCount;
           });
       },
       formatter(row, column) {
@@ -120,7 +116,8 @@
         this.$message('编辑第' + (index + 1) + '行');
       },
       handleDelete(index, row) {
-        this.$message.error('删除第' + (index + 1) + '行');
+        this.dialogVisible = true;
+        //this.$message.error('删除第' + (index + 1) + '行');
       },
       delAll() {
         const self = this,

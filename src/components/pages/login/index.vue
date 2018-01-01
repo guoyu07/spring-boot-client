@@ -80,7 +80,7 @@
     padding: 40px;
     border-radius: 8px;
     background: #fff;
-    box-shadow:0px 0px 10px #A2A2A2;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .12);
   }
 
   .login-btn {
