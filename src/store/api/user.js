@@ -7,7 +7,7 @@ export default {
    * @returns {*}
    */
   queryUserList(data) {
-    return http.get("/profile_v1/user/query/all", data);
+    return http.get("/profile_v1/user/query", data);
   },
   /**
    * 根据id删除一个用户

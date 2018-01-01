@@ -54,12 +54,12 @@
   .sidebar {
     display: block;
     position: absolute;
-    margin: 20px 10px 0px 10px;
+    margin: 20px 10px 50px 10px;
     width: 140px;
     left: 0;
     top: 70px;
     bottom: 0;
-    background: #2E363F;
+    height: 750px;
     box-shadow: 0 1px 4px 0 rgba(0,0,0,.12);
   }
 

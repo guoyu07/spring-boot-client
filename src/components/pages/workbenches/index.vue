@@ -69,13 +69,24 @@
     <div class="workbench-content">
       <el-tabs v-model="activeName">
 
-        <el-tab-pane label="公告" name="first">
-          公告内容
+        <el-tab-pane label="概况" name="first">
+          <div class="tab-content overview-analysis">
+            概况
+          </div>
         </el-tab-pane>
 
-        <el-tab-pane label="学院" name="second">
-          学院内容
+        <el-tab-pane label="用户分析" name="second">
+          <div class="tab-content user-analysis">
+            用户分析
+          </div>
         </el-tab-pane>
+
+        <el-tab-pane label="文章分析" name="fouth">
+          <div class="tab-content content-analysis">
+            文章分析
+          </div>
+        </el-tab-pane>
+
       </el-tabs>
     </div>
   </div>
@@ -98,14 +109,11 @@
 
 <style scoped>
   .workbench {
-    height: 100%;
     background-color: #F4F5F6;
   }
 
   .workbench-content {
-    height: 100%;
     background-color: #fff;
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .12);
   }
 
   .workbench-top {
@@ -152,5 +160,7 @@
     background-color: #fff;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .12);
   }
-
+  .tab-content{
+    margin: 0px 10px 0px 10px;
+  }
 </style>

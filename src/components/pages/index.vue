@@ -23,11 +23,9 @@
 </script>
 
 <style scoped>
-  .wrapper{
-    background-color: #F4F5F6;
-  }
-  .wrapper .content {
-    margin: 20px 10px 0px 10px;
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .12);
+  .content {
+    height: 750px;
+    margin: 20px 10px 50px 10px;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.12);
   }
 </style>

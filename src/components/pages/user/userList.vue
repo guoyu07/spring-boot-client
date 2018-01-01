@@ -1,16 +1,18 @@
 <template>
-  <div>
+  <div class="user-wrapper">
+    <div class="user-inner-wapper">
     <div class="user-table-options">
-      <el-input @keyup.enter.native="" style="width: 200px;" class="filter-item"
-                placeholder="请输入用户名">
+      <el-input v-model="queryContent" @keyup.enter.native="queryByCondition" style="width: 250px;" class="filter-item"
+                placeholder="请输入用户名、姓名、手机号" clearable>
       </el-input>
-      <el-button type="primary"><i class="el-icon-search"></i> 搜索</el-button>
+      <el-button type="primary" style="margin-left: 8px;" @click="queryByCondition"><i class="el-icon-search"></i> 搜索
+      </el-button>
       <el-button class="filter-item" style="margin-left: 10px;" @click="showUserAddForm" type="primary"
                  unique-opened route>
-        <i class="el-icon-edit"></i>添加
+        <i class="el-icon-edit"></i> 添加
       </el-button>
     </div>
-    <div class="handler-table">
+    <div class="handler-table" >
       <el-table :data="tableData" border style="width: 100%" ref="multipleTable"
                 @selection-change="handleSelectionChange">
 
@@ -73,6 +75,7 @@
         </el-form-item>
       </el-form>
     </el-dialog>
+    </div>
   </div>
 </template>
 
@@ -87,8 +90,7 @@
     },
     data() {
       return {
-        inputDate: '',
-        inputName: '',
+        queryContent: '',
         tableData: [],
         cur_page: 1,
         multipleSelection: [],
@@ -154,6 +156,10 @@
       }
     },
     methods: {
+      queryByCondition() {
+        this.queryContent = this.queryContent.trim();
+        this.getData();
+      },
       showUserAddForm() {
         this.formTitle = '添加用户';
         this.formButtonName = '添加';
@@ -165,7 +171,11 @@
         this.getData();
       },
       getData() {
-        this.$store.dispatch('queryUserList', {page: this.cur_page, pageSize: 5})
+        let data = {page: this.cur_page, pageSize: 10};
+        if (this.queryContent) {
+          data.content = this.queryContent;
+        }
+        this.$store.dispatch('queryUserList', data)
           .then(data => {
             this.tableData = data.userList.list;
             this.pageCount = data.userList.totalPage;
