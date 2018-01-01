@@ -3,27 +3,64 @@
     <div class="workbench-top">
       <el-row :gutter="20">
         <el-col :span="6">
-          <div class="grid-content bg-01">
-            <i class="el-icon-upload2"></i>
-            用户新增：4,027
+          <div class="grid-content">
+
+            <!--<div>-->
+            <!--<i class="el-icon-upload2"></i> 用户增长数-->
+            <!--</div>-->
+            <!--<div class="">-->
+            <!--<count-to class="card-panel-num" :startVal="0" :endVal="81212" :duration="3000"></count-to>-->
+            <!--</div>-->
+
+            <div class="card-panel-icon-wrapper icon-user">
+              <i class="el-icon-upload2" style="size: 20px"></i>
+            </div>
+            <div class="card-panel-description">
+              <div class="card-panel-text">用户数</div>
+              <count-to class="card-panel-num" :startVal="0" :endVal="81212" :duration="3000"></count-to>
+            </div>
+
           </div>
         </el-col>
         <el-col :span="6">
-          <div class="grid-content bg-02">
-            <i class="el-icon-view"></i>
-            用户指数：565
+          <div class="grid-content">
+
+            <div class="card-panel-icon-wrapper icon-user-num">
+              <i class="el-icon-view"></i>
+            </div>
+            <div class="card-panel-description">
+              <div class="card-panel-text">用户指数</div>
+              <count-to class="card-panel-num" :startVal="0" :endVal="565" :duration="3000"></count-to>
+            </div>
+
           </div>
         </el-col>
         <el-col :span="6">
-          <div class="grid-content bg-03">
-            <i class="el-icon-star-on"></i>
-            累计收藏：232,671
+          <div class="grid-content">
+
+            <div class="card-panel-icon-wrapper icon-star">
+              <i class="el-icon-star-on"></i>
+            </div>
+            <div class="card-panel-description">
+              <div class="card-panel-text">累计收藏</div>
+              <count-to class="card-panel-num" :startVal="0" :endVal="232671" :duration="3000"></count-to>
+            </div>
+
           </div>
         </el-col>
         <el-col :span="6">
-          <div class="grid-content bg-04">
-            <i class="el-icon-share"></i>
-            累计分享：132,672
+          <div class="grid-content">
+            <div class="grid-content">
+
+              <div class="card-panel-icon-wrapper icon-share">
+                <i class="el-icon-share"></i>
+              </div>
+              <div class="card-panel-description">
+                <div class="card-panel-text">累计分享</div>
+                <count-to class="card-panel-num" :startVal="0" :endVal="132672" :duration="3000"></count-to>
+              </div>
+
+            </div>
           </div>
         </el-col>
       </el-row>
@@ -45,7 +82,12 @@
 </template>
 
 <script>
+  import CountTo from 'vue-count-to'
+
   export default {
+    components: {
+      CountTo
+    },
     data: function () {
       return {
         activeName: 'first'
@@ -75,18 +117,40 @@
   .workbench-top el-col {
     margin: 10px;
   }
+  .icon-user{
+    color: #40C9C6;
+  }
+  .icon-user-num{
+    color: #36A3F7;
+  }
+  .icon-star{
+    color: #f7ba2a;
+  }
+  .icon-share{
+    color: #e64242;
+  }
+  .card-panel-icon-wrapper {
+    font-size: 25px;
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translateY(-50%);
+  }
 
+  .card-panel-description{
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    right: 25%;
+    transform: translateY(-50%);
+  }
   .workbench-top .grid-content {
+    position: relative;
     text-align: center;
-    line-height: 130px;
-    min-height: 130px;
     font-size: 18px;
+    height: 120px;
     background-color: #fff;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .12);
   }
 
-  .grid-content:hover {
-    background-color: #409EFF;
-    color: #Fff;
-  }
 </style>
