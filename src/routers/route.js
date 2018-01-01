@@ -11,6 +11,8 @@ const login = resolve => require(['components/pages/login/index.vue'], resolve)
 const index = r => require.ensure([], () => r(require('components/pages/index.vue')), 'group-index-main')
 const workbench = r => require.ensure([], () => r(require('components/pages/workbenches/index.vue')), 'group-index')
 const user = r => require.ensure([], () => r(require('components/pages/user/index.vue')), 'group-index')
+// const userAdd = r => require.ensure([], () => r(require('components/pages/user/userAdd.vue')), 'group-index')
+// const userEdit = r => require.ensure([], () => r(require('components/pages/user/userEdit.vue')), 'group-index')
 const role = r => require.ensure([], () => r(require('components/pages/role/index.vue')), 'group-index')
 
 
@@ -21,7 +23,6 @@ const routers = [
   },
   {
     path: '/login',
-    name: 'login',
     component: login,
     meta: {title: '登录-后台系统'}
   },
@@ -35,13 +36,11 @@ const routers = [
       },
       {
         path: 'workbench',
-        name: 'workbench',
         component: workbench,
         meta: {title: '主页-后台系统'}
       },
       {
         path: 'user',
-        name: 'user',
         component: user,
         meta: {title: '用户管理-后台系统'}
       },
