@@ -69,6 +69,9 @@
         <el-form-item label="手机号" prop="phone">
           <el-input v-model="addForm.phone" clearable></el-input>
         </el-form-item>
+        <el-form-item label="角色" prop="roles">
+          <el-transfer v-model="addForm.roles" :data="transferData" :titles="['可选角色','已选角色']"></el-transfer>
+        </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('addForm')">{{formButtonName}}</el-button>
           <el-button @click="closeForm('addForm')">取消</el-button>
@@ -92,6 +95,7 @@
       return {
         queryContent: '',
         tableData: [],
+        transferData:[],
         cur_page: 1,
         multipleSelection: [],
         select_cate: '',
@@ -108,7 +112,8 @@
           password: '',
           avatar: '',
           phone: '',
-          realname: ''
+          realname: '',
+          roles: [],
         },
         rules: {
           username: [
@@ -161,10 +166,19 @@
         this.getData();
       },
       showUserAddForm() {
+
         this.formTitle = '添加用户';
         this.formButtonName = '添加';
         this.formType = 'add';
         this.showUserAdd = true;
+        this.$store.dispatch('queryRoleList')
+          .then(data => {
+            var tempTransferData = [];
+            data.roleList.list.forEach((role) => {
+              tempTransferData.push({key: role.id, label: role.displayName});
+            });
+            this.transferData = tempTransferData;
+          });
       },
       handleCurrentChange(val) {
         this.cur_page = val;
@@ -213,7 +227,10 @@
           if (valid) {
             this.showUserAdd = false;
             if (this.formType === 'add') {
-              this.$store.dispatch('addUser', this.addForm).then(() => {
+              var postData = deepClone(this.addForm);
+              postData.roles = JSON.stringify(this.addForm.roles);
+              debugger
+              this.$store.dispatch('addUser', postData).then(() => {
                 this.getData();
                 this.$refs[formName].resetFields();
               })
