@@ -36,30 +36,31 @@ function checkStatus(response) {
   }
 }
 
-function checkCode(res,successMsg) {
+function checkCode(res, successMsg) {
   // 如果code异常(这里已经包括网络错误，服务器错误，后端抛出的错误)，可以弹出一个错误提示，告诉用户
   if (res.status === -404) {
     Message({
-      message: res.msg,
+      message: res.data.msg,
       type: 'error',
       duration: 5 * 1000
     })
   }
   if (res.data && (!res.data.success)) {
     Message({
-      message: res.msg,
+      message: res.data.msg,
       type: 'error',
       duration: 5 * 1000
     })
   }
-  if (successMsg) {
+  if (res.data && res.data.success && successMsg) {
     Message({
       message: successMsg,
       type: 'success',
       duration: 2 * 1000
     })
   }
-  return res.data.data;
+  debugger
+  return res.data;
 }
 
 export default {

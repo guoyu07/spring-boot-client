@@ -5,6 +5,7 @@ import * as getters from './getters'
 import mutations from './mutations'
 import user from './modules/user'
 import role from './modules/role'
+import login from './modules/login'
 
 Vue.use(Vuex)
 
@@ -26,6 +27,7 @@ const store = new Vuex.Store({
 
 store.registerModule('user', user)
 store.registerModule('role', role)
+store.registerModule('login', login)
 
 //统一错误处理
 let errorObj = {name: '', number: 0}

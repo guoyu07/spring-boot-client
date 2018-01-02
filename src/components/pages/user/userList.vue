@@ -172,9 +172,9 @@
         this.formType = 'add';
         this.showUserAdd = true;
         this.$store.dispatch('queryRoleList')
-          .then(data => {
+          .then(res => {
             var tempTransferData = [];
-            data.roleList.list.forEach((role) => {
+            res.data.roleList.list.forEach((role) => {
               tempTransferData.push({key: role.id, label: role.displayName});
             });
             this.transferData = tempTransferData;
@@ -190,9 +190,9 @@
           data.content = this.queryContent;
         }
         this.$store.dispatch('queryUserList', data)
-          .then(data => {
-            this.tableData = data.userList.list;
-            this.pageCount = data.userList.totalPage;
+          .then(res => {
+            this.tableData = res.data.userList.list;
+            this.pageCount = res.data.userList.totalPage;
           });
       },
       formatter(row, column) {
@@ -229,7 +229,6 @@
             if (this.formType === 'add') {
               var postData = deepClone(this.addForm);
               postData.roles = JSON.stringify(this.addForm.roles);
-              debugger
               this.$store.dispatch('addUser', postData).then(() => {
                 this.getData();
                 this.$refs[formName].resetFields();

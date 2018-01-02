@@ -21,6 +21,8 @@
 </template>
 
 <script>
+  import {deepClone} from "../../../utils/util";
+
   export default {
     data: function () {
       return {
@@ -43,7 +45,12 @@
         const self = this;
         self.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$router.push({path: '/index'})
+            var postData = deepClone(this.ruleForm);
+            this.$store.dispatch('loginByUsername', postData).then((data) => {
+              if (data.success) {
+                this.$router.push({path: '/index'})
+              }
+            });
           } else {
             return false;
           }
@@ -91,7 +98,8 @@
     width: 100%;
     height: 36px;
   }
-  .login-img{
-    transform:scale(0.8)
+
+  .login-img {
+    transform: scale(0.8)
   }
 </style>

@@ -162,13 +162,13 @@
           data.content = this.queryContent;
         }
         this.$store.dispatch('queryRoleList', data)
-          .then(data => {
-            this.tableData = data.roleList.list;
-            this.pageCount = data.roleList.totalPage;
+          .then(res => {
+            this.tableData = res.data.roleList.list;
+            this.pageCount = res.data.roleList.totalPage;
           });
         this.$store.dispatch('getCache', {type: 'permission'})
-          .then(data => {
-            var permissionArr = JSON.parse(data.permission);
+          .then(res => {
+            var permissionArr = JSON.parse(res.data.permission);
             this.basePermissionData = permissionArr;
           });
       },
@@ -184,9 +184,9 @@
         this.formType = 'update';
         this.showRoleAdd = true;
         this.$store.dispatch('queryRoleById', row)
-          .then(data => {
-            this.addForm = deepClone(data.role);
-            var permissions = deepClone(data.role.permissions);
+          .then(res => {
+            this.addForm = deepClone(res.data.role);
+            var permissions = deepClone(res.data.role.permissions);
             var permissionsArray = JSON.parse(permissions);
             this.$refs.tree.setCheckedKeys(permissionsArray);
           });
