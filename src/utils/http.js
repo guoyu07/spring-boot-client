@@ -59,7 +59,6 @@ function checkCode(res, successMsg) {
       duration: 2 * 1000
     })
   }
-  debugger
   return res.data;
 }
 

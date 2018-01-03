@@ -1,4 +1,4 @@
-import http from '../../utils/http'
+import http from '../../utils/https'
 
 export default {
   /**
@@ -9,6 +9,6 @@ export default {
       username: data.username,
       password: data.password
     };
-    return http.post("/profile_v1/login", reqData, '登录成功');
+    return http.post("/profile_v1/login", reqData);
   }
 }
