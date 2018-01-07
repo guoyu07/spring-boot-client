@@ -25,9 +25,7 @@ export default {
     }
     return window.fetch(process.env.BASE_API + url + "?" + qs.stringify(data), {
       method: 'get',
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
+      'X-Requested-With': 'XMLHttpRequest'
     }).then((res) => {
       return commonThen(res)
     }).catch((res) => {

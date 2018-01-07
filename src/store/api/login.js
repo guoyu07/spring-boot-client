@@ -10,5 +10,11 @@ export default {
       password: data.password
     };
     return http.post("/profile_v1/login", reqData);
+  },
+  /**
+   * 登出系统
+   */
+  logout(data) {
+    return http.post("/profile_v1/logout", data);
   }
 }

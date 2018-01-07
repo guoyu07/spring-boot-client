@@ -1,5 +1,6 @@
 import login from '../../api/login'
 import {Message} from 'element-ui'
+import * as gtypes from '../../mutation-types'
 
 export const loginByUsername = ({commit}, data) => {
 
@@ -13,6 +14,28 @@ export const loginByUsername = ({commit}, data) => {
             message: '登录成功',
             duration: 2 * 1000
           })
+          commit(gtypes.SET_LOGIN,res.data.session);
+          resolve(res);
+        } else {
+          Message({
+            message: res.msg,
+            type: 'error',
+            duration: 2 * 1000
+          })
+        }
+      }).catch(err => {
+      console.log("err===>", err);
+    });
+  })
+}
+
+export const logout = ({commit}, data) => {
+
+  return new Promise((resolve, reject) => {
+    login
+      .logout(data)
+      .then(res => {
+        if (res.success) {
           resolve(res);
         } else {
           Message({
