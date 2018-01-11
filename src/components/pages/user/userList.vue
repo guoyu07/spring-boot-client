@@ -214,7 +214,19 @@
         this.formButtonName = '修改';
         this.formType = 'update';
         this.showUserAdd = true;
-        this.addForm = deepClone(row);
+        let roleArray = [];
+        let tempForm = deepClone(row);
+        let roleStr = tempForm.roles;
+        if (roleStr.indexOf("[") != -1 && roleStr.indexOf("]") != -1) {
+          roleStr = roleStr.substring(1, roleStr.indexOf("]"))
+          roleArray = roleStr.split(',');
+          let arr = []
+          for (let i = 0; i < roleArray.length; i++) {
+            arr.push(parseInt(roleArray[i]))
+          }
+          tempForm.roles = arr;
+        }
+        this.addForm = tempForm;
       },
       // 删除用户
       handleDelete(row) {
@@ -255,7 +267,7 @@
       closeForm(formName) {
         this.showUserAdd = false;
         this.$refs[formName].resetFields();
-        this.addForm = {username: '', password: '', avatar: '', phone: '', realname: ''}
+        this.addForm = {username: '', password: '', avatar: '', phone: '', realname: '', roles: []}
       },
       delAll() {
         const self = this,
