@@ -9,12 +9,7 @@ export const loginByUsername = ({commit}, data) => {
       .loginByUsername(data)
       .then(res => {
         if (res.success) {
-          Message({
-            type: 'success',
-            message: '登录成功',
-            duration: 2 * 1000
-          })
-          commit(gtypes.SET_LOGIN,res.data.session);
+          commit(gtypes.SET_LOGIN, res.data.session);
           resolve(res);
         } else {
           Message({
