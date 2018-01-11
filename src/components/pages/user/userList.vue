@@ -194,6 +194,14 @@
             this.tableData = res.data.userList.list;
             this.pageCount = res.data.userList.totalPage;
           });
+        this.$store.dispatch('queryRoleList')
+          .then(res => {
+            var tempTransferData = [];
+            res.data.roleList.list.forEach((role) => {
+              tempTransferData.push({key: role.id, label: role.displayName});
+            });
+            this.transferData = tempTransferData;
+          });
       },
       formatter(row, column) {
         return row.address;
