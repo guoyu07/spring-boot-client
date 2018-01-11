@@ -43,7 +43,8 @@ export default {
       username: data.username,
       realname: data.realname,
       password: data.password,
-      phone: data.phone
+      phone: data.phone,
+      roles: data.roles
     }
     return http.post("/profile_v1/user/update", reqData, '添加成功');
   }

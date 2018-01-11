@@ -85,6 +85,7 @@
 <script>
   import {deepClone} from '../../../utils/util.js'
   import userList from './userList.vue'
+  import _ from 'underscore'
 
   export default {
     name: 'userList',
@@ -246,15 +247,18 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
             this.showUserAdd = false;
+            let tempForm = deepClone(this.addForm);
+            let tempRoles = _.filter(tempForm.roles, function (item) {
+              return !isNaN(item);
+            });
+            tempForm.roles = JSON.stringify(tempRoles);
             if (this.formType === 'add') {
-              var postData = deepClone(this.addForm);
-              postData.roles = JSON.stringify(this.addForm.roles);
-              this.$store.dispatch('addUser', postData).then(() => {
+              this.$store.dispatch('addUser', tempForm).then(() => {
                 this.getData();
                 this.$refs[formName].resetFields();
               })
             } else if (this.formType === 'update') {
-              this.$store.dispatch('updateUser', this.addForm).then(() => {
+              this.$store.dispatch('updateUser', tempForm).then(() => {
                 this.getData();
                 this.$refs[formName].resetFields();
               })
